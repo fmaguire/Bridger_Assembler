@@ -1,5 +1,11 @@
 [![Build Status](https://travis-ci.org/fmaguire/Bridger_Assembler.svg?branch=master)](https://travis-ci.org/fmaguire/Bridger_Assembler)
 
+```
+Rehost by Finlay Maguire to fix some minor bugs - 
+All credit goes to original authors below;
+
+
+
 ================
  Description
 ================
@@ -168,4 +174,4 @@
  Zheng Chang <changzmaths@gmail.com>
 
  Created on June 25, 2012.
- 
+``` 
