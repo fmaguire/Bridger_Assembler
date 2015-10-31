@@ -48,3 +48,15 @@ src/Assemble
 src/PathSearch
 src/get_reads_from_graph
 
+# Automake stuff
+Makefile
+config.log
+config.status
+libtool
+src/Makefile
+autom4te.cache
+src/.deps
+
+# text edit
+*.sw* 
+*~
