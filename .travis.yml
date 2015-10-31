@@ -1,0 +1,15 @@
+language: cpp
+compiler:
+    - clang
+    - gcc
+addons:
+    apt:
+        sources:
+            - boost-latest
+        packages:
+            - libboost1.55-all-dev
+            - libboost-serialization1.55-dev
+
+install: ./configure && make
+
+script: cd sample_test; ./run_Me.sh
