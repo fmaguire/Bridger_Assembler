@@ -1,0 +1,9 @@
+ACLOCAL_AMFLAGS = -I m4
+ALWAYS_BUILT = src ./plugins/fastool/ ./plugins/rsem/
+SUBDIRS = $(ALWAYS_BUILT)
+DIST_SUBDIRS = $(ALWAYS_BUILT)
+
+EXTRA_DIST = LICENSE
+
+.PHONY: FORCE
+

@@ -1,0 +1,15 @@
+===========
+2013-06-02
+===========
+
+plugins:
+    include a software called RSEM to estimate abundance of assembled assemblies.
+
+perlLib:
+    add a perl script called run_RSEM_align_n_estimate.pl simply maps the familiar parameters 
+    used in assembley to those of the RSEM software and then executes RSEM accordingly.
+
+plugins:
+    add two scripts:
+    *run_abundance_estimation.sh : test abundance estimation using RSEM software.
+    *clean.pl : clean those files generated during test Bridger and RSEM.
