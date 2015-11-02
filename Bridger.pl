@@ -206,11 +206,6 @@ main: {
     if (-d $output_directory) {
 	# clear
         print "[Warning] $output_directory exists already. It will be overwritten.\n";
-        #while (1) {
-	#   print "Do you want to continue ? [yes/no] ";
-        # How to implement here ?
-        # if ($answer eq 'yes') - > break;
-        #}   
         &process_cmd("rm -r $output_directory/*");
         
     } else {
@@ -259,11 +254,6 @@ main: {
 	#}
         
         &prep_seqs($single_file, $seqType, "single", $SS_lib_type) unless (-s "single.fa");
-        #if ( (!( -s "single.fa")) || (readlink "single.fa" ne $single_file)) {	
-	#    &prep_seqs($single_file, $seqType, "single", $SS_lib_type);
-        #} else {
-        #    print ("single file exists in $output_directory, nothing to do\n");
-        #}
     } else {
  	die "not sure what to do. "; # should never get here.
     }
@@ -291,13 +281,6 @@ main: {
     ##=================
     ## prepare the list of file
     my @raw_graphs;
-    #opendir(DH,"$output_directory/RawGraphs") or die "Can not open directory/RawGraphs:$!";
-    #foreach my $file(readdir DH) {  # read one file name in this directory
-    #    if ($file =~ /^comp[0-9]+\.rg$/) {
-    #        $file =~ s/\.rg//;
-    #       push(@raw_graphs,$file);
-    #    }
-    #}
     
     open(Graph,"$output_directory/RawGraphs/raw_graph.list") || die "Can not open directory/RawGraphs/raw_graph.list!\n";
     @raw_graphs = <Graph>;
@@ -319,12 +302,10 @@ main: {
 
     ##===================
     ## Path search step:
-    #&run_path_search();
     exit if ($no_run_pathsearch);
     print "\n### Search paths from Splicing Graphs ###\n\n";
     
 
-    #my $path_search_cmds = " $BIN_DIR/ParaFly -c $output_directory/path_search.commands -shuffle -CPU $CPU -failed_cmds failed_path_search_commands.txt -v";
     unless (-s "$output_directory/path_search.commands") {
 	die "No commands for path search, Could it be that your read data is too sparse to generate minimal length contigs?\n";
     }
@@ -340,7 +321,6 @@ main: {
     ## collect all transcripts
     # no longer scan the file system... we know which files should exist
     #my $cmd = 'find ./transcripts -regex ".*transcripts.fasta" -exec cat {} \; Bridger.fasta';
-    #&process_cmd($cmd);
     &collect_transcripts(\@raw_graphs, 'Bridger.fasta');
 
     print "\n\n";
@@ -375,11 +355,6 @@ sub prep_seqs {
         }
         $fastool_cmd .= " --to-fasta $initial_file > $file_prefix.fa";
         $perlcmd .= " > $file_prefix.fa";  
-	#my $cmd = "$PERL_DIR/fastQ_to_fastA.pl -I $initial_file ";
-	#if ($SS_lib_type && $SS_lib_type eq "R") {
-	#	$cmd .= " --rev ";
-	#}
-        #$cmd .= "> $file_prefix.fa"; 
         my $cmd = ($USE_FASTOOL) ? $fastool_cmd : $perlcmd;
 	&process_cmd($cmd) unless (-e "$file_prefix.fa");
     } elsif ($seqType eq "fa") {
