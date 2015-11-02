@@ -19,7 +19,6 @@ my $BIN_DIR = "$ROOTDIR/bin";
 # defaults:
 my $kmer_length = 25;
 my $CPU = 2;
-my $NO_FASTOOL = 0;
 my $no_run_pathsearch = 0;
 my $output_directory = "bridger_out_dir";
 
@@ -120,7 +119,6 @@ my ($seqType, $left_file, $right_file, $single_file, $SS_lib_type,
     "min_junction_coverage=i" => \$min_junction_coverage,
     "min_ratio_non_error=f" => \$min_ratio_non_error,
     "pair_gap_length|g=i" => \$pair_gap_length,
-    "no_fastool" => \$NO_FASTOOL,
     "no_run_pathsearch"=> \$no_run_pathsearch,
     "clean" => \$clean,
     "debug" => \$debug,
@@ -151,11 +149,6 @@ if ($kmer_length < 19) {
     die "[Error] Length of kmer is too small, range [19,32] is acceptable!\n";
 } elsif ($kmer_length > 32) {
     die "[Error] Length of kmer is too big, range [19,32] is acceptable!\n";
-}
-
-my $USE_FASTOOL = 1; # by default, using fastool for fastq to fasta conversion
-if ($NO_FASTOOL) {
-    $USE_FASTOOL = 0;
 }
 
 
@@ -355,8 +348,7 @@ sub prep_seqs {
         }
         $fastool_cmd .= " --to-fasta $initial_file > $file_prefix.fa";
         $perlcmd .= " > $file_prefix.fa";  
-        my $cmd = ($USE_FASTOOL) ? $fastool_cmd : $perlcmd;
-	&process_cmd($cmd) unless (-e "$file_prefix.fa");
+	&process_cmd($fastool_cmd) unless (-e "$file_prefix.fa");
     } elsif ($seqType eq "fa") {
 
 	if ($SS_lib_type && $SS_lib_type eq "R") {
