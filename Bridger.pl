@@ -11,7 +11,7 @@ use Getopt::Long qw(:config no_ignore_case bundling pass_through);
 my $PACKAGE = "Bridger";
 my $VERSION = "2014-12-01";
 my $ROOTDIR = "$FindBin::Bin";
-my $SRC_DIR = "$ROOTDIR/src";
+my $SRC_DIR = "$ROOTDIR/build/src";
 my $PERL_DIR = "$ROOTDIR/perllib";
 my $FASTOOL_DIR = "$ROOTDIR/plugins/fastool";
 my $BIN_DIR = "$ROOTDIR/bin";

@@ -1,0 +1,3 @@
+﻿  getopt.c
+  Warning static builds of getopt violate the Lesser GNU Public License
+  getopt_mb_uni_vc10_dll.vcxproj -> D:\Desktop\src\windows\getopt_mb_uni_vc10_dll\..\bin\debug\lib\getopt.lib
