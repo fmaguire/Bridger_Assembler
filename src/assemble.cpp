@@ -201,10 +201,8 @@ int main(int argc, char* argv[]) {
     //int retcode = mkpath(out_dir.c_str(), 0777);
     bool retcode = boost::filesystem::create_directories(out_dir);
     //if (retcode == -1) {
-    if (retcode) {
-      if (errno != EEXIST) {
-	errAbort(const_cast<char *>("Cannot create directory %s !\n"), out_dir.c_str());
-      }
+    if (retcode == false) {
+      errAbort(const_cast<char *>("Cannot create directory %s !\n"), out_dir.c_str());
     }
   }
   
